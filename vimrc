@@ -9,13 +9,26 @@ call pathogen#infect()
 "turn filetype stuff back on
 filetype plugin indent on
 
+" leader character is a comma
+let mapleader = ","
+
+set hidden " better multi-buffer handling
 set backspace=indent,eol,start
 set ruler
-set history=100
+set history=1000
 set number
 set nowrap
 set showcmd		" display incomplete commands
+
+set ignorecase " ignore case when searching
+set smartcase  " though be smart if there are caps
+set hlsearch    " highlight searches
 set incsearch		" do incremental searching
+
+" quick turning off of highlight search
+nmap <silent> <leader>n :silent :nohlsearch<CR>
+
+set scrolloff=3  " cursor context when scrolling
 
 " set all the tab stuff
 set expandtab
@@ -25,6 +38,7 @@ set tabstop=4
 
 " Enable CTRL-A/CTRL-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha
+
 
 "load smarty template
 au BufRead,BufNewFile *.tpl set filetype=smarty
@@ -58,11 +72,10 @@ let vimclojure#ParenRainbow=1
 
 "turn on wildmenu
 set wildmenu
+set wildmode=list:longest
 
 " always show status line
 set laststatus=2
 
-" adding fancy git info to status line
-if exists('g:loaded_fugitive')
-    set statusline=%t\ [b%n]\ %y%m%r\ %{fugitive#statusline()}%=[%B]\ %l,%c%V\ %P
-endif
+" adding fancy git info to status line if fugitive is present
+autocmd VimEnter * if exists('g:loaded_fugitive') | set statusline=%t\ [b%n]\ %y%m%r\ %{fugitive#statusline()}%=[%B]\ %l,%c%V\ %P |
