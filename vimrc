@@ -72,7 +72,7 @@ let vimclojure#ParenRainbow=1
 
 "turn on wildmenu
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest,full
 
 " always show status line
 set laststatus=2
