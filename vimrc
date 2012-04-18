@@ -12,7 +12,7 @@ filetype plugin indent on
 " leader character is a comma
 let mapleader = ","
 
-set hidden " better multi-buffer handling
+"set hidden " better multi-buffer handling
 set backspace=indent,eol,start
 set ruler
 set history=1000
