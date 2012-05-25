@@ -47,6 +47,7 @@ au BufRead,BufNewFile *.tpl set filetype=smarty
 au BufRead,BufNewFile *.jinc set filetype=jsp
 
 autocmd FileType python setlocal expandtab
+autocmd FileType java setlocal noexpandtab
 
 " switch to upper/lower window quickly
 map <C-J> <C-W>j
@@ -60,6 +61,14 @@ imap <C-F> 
 if $ISMEETUP
     set path=/usr/local/meetup/src/**,/usr/local/meetup/base_src/**,/usr/local/meetup/web/**,/usr/local/meetup/util/**
     :color default
+
+    " Map <F4> to re-build tags file
+     nmap <silent> <F4> 
+                 \ :!ctags -f ~/.meetup_tags
+                 \ -R 
+                 \  /usr/local/meetup/src/ /usr/local/meetup/base_src/ /usr/local/meetup/marketplace_src/<CR>
+    
+    set tags=~/.meetup_tags
 else
     ":color darkblue
 endif
@@ -72,10 +81,18 @@ let vimclojure#ParenRainbow=1
 
 "turn on wildmenu
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=longest,full
 
 " always show status line
 set laststatus=2
 
 " adding fancy git info to status line if fugitive is present
 autocmd VimEnter * if exists('g:loaded_fugitive') | set statusline=%t\ [b%n]\ %y%m%r\ %{fugitive#statusline()}%=[%B]\ %l,%c%V\ %P |
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
