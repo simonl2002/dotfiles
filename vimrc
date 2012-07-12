@@ -11,6 +11,7 @@ filetype plugin indent on
 
 " leader character is a comma
 let mapleader = ","
+let maplocalleader = ","
 
 "set hidden " better multi-buffer handling
 set backspace=indent,eol,start
@@ -78,6 +79,9 @@ syntax on
 "VimClojure Settings
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=1
+let vimclojure#FuzzyIndent=1
+let vimclojure#WantNailgun=1
+
 
 "turn on wildmenu
 set wildmenu
