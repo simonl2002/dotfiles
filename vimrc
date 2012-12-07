@@ -75,6 +75,7 @@ else
 endif
 
 syntax on
+colorscheme solarized
 
 "VimClojure Settings
 let vimclojure#HighlightBuiltins=1
