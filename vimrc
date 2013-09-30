@@ -40,6 +40,9 @@ set tabstop=4
 " Enable CTRL-A/CTRL-X to work on octal and hex numbers, as well as characters
 set nrformats=octal,hex,alpha
 
+" show hidden whitespace chars
+set listchars=tab:»·,trail:«
+set list
 
 "load smarty template
 au BufRead,BufNewFile *.tpl set filetype=smarty
